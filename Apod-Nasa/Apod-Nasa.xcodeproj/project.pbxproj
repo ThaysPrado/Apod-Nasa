@@ -29,9 +29,22 @@
 		460C92B92D4ABDDC00A19B00 /* Apod-NasaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Apod-NasaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		460C92E32D4ACC2000A19B00 /* Exceptions for "Apod-Nasa" folder in "Apod-Nasa" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 460C92992D4ABDDB00A19B00 /* Apod-Nasa */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		460C929C2D4ABDDB00A19B00 /* Apod-Nasa */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				460C92E32D4ACC2000A19B00 /* Exceptions for "Apod-Nasa" folder in "Apod-Nasa" target */,
+			);
 			path = "Apod-Nasa";
 			sourceTree = "<group>";
 		};
@@ -399,10 +412,10 @@
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Apod-Nasa/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
@@ -434,10 +447,10 @@
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Apod-Nasa/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
