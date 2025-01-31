@@ -29,9 +29,28 @@
 		4657E67F2D4AFDC90023F442 /* APODUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APODUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		46AC707A2D4C4D5400294C1F /* Exceptions for "APOD" folder in "APODTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Config/ServiceConfig.swift,
+				Features/Home/ApodModel.swift,
+				Features/Home/HomeViewModel.swift,
+				Services/ApodService.swift,
+				Services/Manager/APIManager.swift,
+				Services/Manager/RequestError.swift,
+				Services/NetworkConstants.swift,
+			);
+			target = 4657E6742D4AFDC90023F442 /* APODTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4657E6622D4AFDC80023F442 /* APOD */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				46AC707A2D4C4D5400294C1F /* Exceptions for "APOD" folder in "APODTests" target */,
+			);
 			path = APOD;
 			sourceTree = "<group>";
 		};
@@ -102,6 +121,7 @@
 				4657E65C2D4AFDC80023F442 /* Sources */,
 				4657E65D2D4AFDC80023F442 /* Frameworks */,
 				4657E65E2D4AFDC80023F442 /* Resources */,
+				4657E6E92D4AFFF60023F442 /* Run Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -195,6 +215,8 @@
 			);
 			mainGroup = 4657E6572D4AFDC80023F442;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4657E6612D4AFDC80023F442 /* Products */;
 			projectDirPath = "";
@@ -230,6 +252,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4657E6E92D4AFFF60023F442 /* Run Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Swiftlint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4657E65C2D4AFDC80023F442 /* Sources */ = {
@@ -398,6 +441,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"APOD/Preview Content\"";
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -427,6 +471,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"APOD/Preview Content\"";
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -16,4 +16,3 @@ extension Font {
         return .system(size: customStyle.size, weight: weight.swiftUIFontWeight, design: .default)
     }
 }
-

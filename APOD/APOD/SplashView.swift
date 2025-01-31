@@ -9,11 +9,11 @@ import SwiftUI
 
 struct SplashView: View {
     @State var isActive: Bool = false
-    
+
     var body: some View {
         ZStack {
             if self.isActive {
-                Rectangle().background(Color.red)
+                HomeView()
             } else {
                 Image("LaunchLogo")
                     .resizable()
