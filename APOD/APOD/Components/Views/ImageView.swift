@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct ImageView: View {
     let url: String
 
     var body: some View {
-        AsyncImage(url: URL(string: url)) { image in
+        CachedAsyncImage(url: URL(string: url)) { image in
             image.resizable().scaledToFill()
         } placeholder: {
             ImageLoaderView()

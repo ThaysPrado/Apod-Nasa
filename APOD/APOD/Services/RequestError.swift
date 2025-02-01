@@ -58,6 +58,14 @@ enum RequestError: Error, Equatable {
         }
     }
     
+    func getMessage() -> String {
+        if self == .notFound {
+            return String(localized: "ImageNotFoundMessage")
+        }
+        
+        return String(localized: "GenericErrorMessage")
+    }
+    
     static func == (lhs: RequestError, rhs: RequestError) -> Bool {
         switch (lhs, rhs) {
         case (.badRequest, .badRequest),

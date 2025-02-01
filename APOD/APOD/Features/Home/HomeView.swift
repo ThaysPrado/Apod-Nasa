@@ -10,25 +10,23 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @State private var isCalendarPresented = false
-    @State private var selectedDate: Date = Date()
+    @State private var isImageTapped = false
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    if let apod = viewModel.apod {
-                        ImageView(url: apod.url)
-                        InformationView(title: apod.title,
-                                        explanation: apod.explanation,
-                                        date: apod.date,
-                                        copyright: apod.copyright)
-                    } else if let errorMessage = viewModel.errorMessage {
-                        ErrorView(title: "Warning", message: errorMessage)
-                    } else {
-                        ImageLoaderView()
-                        InformationLoaderView()
+                    if viewModel.status.isLoading {
+                        loadingView
                     }
-                }.padding(.top, 20)
+                    if viewModel.status.isSuccess {
+                        successView
+                    }
+                    if viewModel.status.isFailure {
+                        errorView
+                    }
+                }
+                .padding(.top, 20)
             }
             .navigationTitle("APOD")
             .navigationBarTitleDisplayMode(.inline)
@@ -37,48 +35,54 @@ struct HomeView: View {
                     isCalendarPresented.toggle()
                 }) {
                     Image(systemName: "calendar")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(8)
+                        .foregroundColor(.baseCustom)
                 }
             )
             .onAppear {
                 viewModel.getAPOD()
             }
-            
-            if isCalendarPresented {
-                CalendarView(selectedDate: $selectedDate, isPresented: $isCalendarPresented)
-                    .transition(.move(edge: .bottom))
+            .sheet(isPresented: $isCalendarPresented) {
+                CalendarView(
+                    selectedDate: Binding(
+                        get: { viewModel.selectedDate },
+                        set: { viewModel.selectedDate = $0 }
+                    ),
+                    isPresented: $isCalendarPresented
+                )
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $isImageTapped) {
+                FullImageView(imageURL: viewModel.apod?.url ?? "")
             }
         }
     }
-}
-
-// TODO: need center
-struct CalendarView: View {
-    @Binding var selectedDate: Date
-    @Binding var isPresented: Bool
     
-    var body: some View {
+    private var loadingView: some View {
         VStack {
-            Text("Escolha uma data")
-                .font(.headline).padding()
-            
-            // Picker de data
-            DatePicker(
-                "",
-                selection: $selectedDate,
-                displayedComponents: .date
-            )
-            .datePickerStyle(GraphicalDatePickerStyle())
-            .padding()
+            ImageLoaderView()
+            InformationLoaderView()
         }
-        .frame(maxWidth: .infinity)
-        .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
-        .padding()
+    }
+    
+    private var successView: some View {
+        VStack {
+            ImageView(url: viewModel.apod?.url ?? "").onTapGesture {
+                isImageTapped.toggle()
+            }
+            InformationView(
+                title: viewModel.apod?.title ?? "",
+                explanation: viewModel.apod?.explanation ?? "",
+                date: viewModel.apod?.date ?? "",
+                copyright: viewModel.apod?.copyright ?? ""
+            )
+        }
+    }
+    
+    private var errorView: some View {
+        VStack {
+            ErrorView(title: String(localized: "GenericErrorTitle"), message: viewModel.errorMessage ?? "")
+        }
     }
 }
 

@@ -30,13 +30,15 @@ struct InformationView: View {
             Text(explanation)
                 .font(.helvetica(with: .regular, forTextStyle: .body))
                 .multilineTextAlignment(.leading)
-        }.padding()
+        }
+        .padding()
+        .foregroundColor(.gray)
     }
 }
 
 #Preview {
-    InformationView(title: "Testando",
-                    explanation: "Esta é uma descrição longa que pode ser exibida aqui.",
-                    date: "30 de janeiro de 2025",
+    InformationView(title: "Galaxy",
+                    explanation: "Lorem ipsum",
+                    date: "2025-01-30",
                     copyright: "Nasa")
 }

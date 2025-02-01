@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ApodServiceProtocol {
-    func getAPOD(_ completion: @escaping (Result<Apod, RequestError>) -> Void)
+    func getAPOD(_ date: Date?, _ completion: @escaping (Result<Apod, RequestError>) -> Void)
 }
 
 struct ApodService: ApodServiceProtocol {
@@ -18,8 +18,12 @@ struct ApodService: ApodServiceProtocol {
         self.apiManager = apiManager
     }
     
-    func getAPOD(_ completion: @escaping (Result<Apod, RequestError>) -> Void) {
-        let queryParams = ["api_key": ServiceConfig.getApiKey()]
+    func getAPOD(_ date: Date? = nil, _ completion: @escaping (Result<Apod, RequestError>) -> Void) {
+        var queryParams = ["api_key": ServiceConfig.getApiKey()]
+        
+        if let date = date {
+            queryParams["date"] = date.toString()
+        }
 
         apiManager.request(
             url: NetworkConstants.URLs.baseURL,

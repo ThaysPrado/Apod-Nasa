@@ -12,11 +12,14 @@ struct ErrorView: View {
     let message: String
 
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Text(title)
                 .font(.helvetica(with: .bold, forTextStyle: .title3))
+                .foregroundColor(.gray)
             Text(message)
                 .font(.helvetica(with: .bold, forTextStyle: .title3))
+                .foregroundColor(.gray)
+                .padding()
         }.padding()
     }
 }
