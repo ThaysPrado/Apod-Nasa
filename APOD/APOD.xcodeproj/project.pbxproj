@@ -41,11 +41,11 @@
 			membershipExceptions = (
 				Config/ServiceConfig.swift,
 				Features/Home/ApodModel.swift,
-				Features/Home/ApodService.swift,
 				Features/Home/HomeViewModel.swift,
-				Services/APIManager.swift,
-				Services/NetworkConstants.swift,
-				Services/RequestError.swift,
+				Services/APOD/ApodService.swift,
+				Services/Manager/APIManager.swift,
+				Services/Manager/NetworkConstants.swift,
+				Services/Manager/RequestError.swift,
 			);
 			target = 4657E6742D4AFDC90023F442 /* APODTests */;
 		};

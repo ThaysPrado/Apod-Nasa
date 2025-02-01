@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Apod: Decodable, Equatable {
+struct Apod: Decodable, Equatable, Identifiable, Hashable {
+    let id = UUID()
     let copyright: String
     let date: String
     let explanation: String
@@ -27,5 +28,16 @@ struct Apod: Decodable, Equatable {
         case mediaType = "media_type"
         case title
         case url
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+        hasher.combine(explanation)
+        hasher.combine(date)
+    }
+    
+    static func ==(lhs: Apod, rhs: Apod) -> Bool {
+        return lhs.id == rhs.id
     }
 }

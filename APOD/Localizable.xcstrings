@@ -7,9 +7,6 @@
     "-" : {
 
     },
-    "Add Item" : {
-
-    },
     "APOD" : {
       "localizations" : {
         "en" : {
@@ -31,13 +28,24 @@
         }
       }
     },
+    "Favorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite"
+          }
+        }
+      }
+    },
     "FavoriteEmptyMessage" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We couldn't find anything.\\nFavorite an image by clicking the heart symbol"
+            "value" : "We couldn't find anything. Favorite an image by clicking the heart symbol"
           }
         }
       }
@@ -52,6 +60,9 @@
           }
         }
       }
+    },
+    "Favorites" : {
+
     },
     "FavoriteTitle" : {
       "extractionState" : "manual",
@@ -70,7 +81,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "An error occurred.\\nPlease try again later."
+            "value" : "An error occurred. Please try again later."
           }
         }
       }
@@ -97,22 +108,27 @@
         }
       }
     },
+    "Home" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
     "ImageNotFoundMessage" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Image not found.\\nTry another date"
+            "value" : "Image not found. Try another date"
           }
         }
       }
-    },
-    "Item at %@" : {
-
-    },
-    "Select an item" : {
-
     },
     "UnfavoriteErrorMessage" : {
       "extractionState" : "manual",

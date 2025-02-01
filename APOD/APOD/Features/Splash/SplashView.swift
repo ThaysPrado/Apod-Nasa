@@ -13,7 +13,7 @@ struct SplashView: View {
     var body: some View {
         ZStack {
             if self.isActive {
-                HomeView()
+                MainTabView()
             } else {
                 Image("LaunchLogo")
                     .resizable()

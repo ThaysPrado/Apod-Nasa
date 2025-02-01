@@ -59,14 +59,14 @@ struct HomeView: View {
     }
     
     private var loadingView: some View {
-        VStack {
+        LazyVStack {
             ImageLoaderView()
             InformationLoaderView()
         }
     }
     
     private var successView: some View {
-        VStack {
+        LazyVStack {
             ImageView(url: viewModel.apod?.url ?? "").onTapGesture {
                 isImageTapped.toggle()
             }
@@ -74,15 +74,24 @@ struct HomeView: View {
                 title: viewModel.apod?.title ?? "",
                 explanation: viewModel.apod?.explanation ?? "",
                 date: viewModel.apod?.date ?? "",
-                copyright: viewModel.apod?.copyright ?? ""
+                copyright: viewModel.apod?.copyright ?? "",
+                url: viewModel.apod?.url ?? "",
+                isFavorited: viewModel.isFavoried,
+                action: {
+                    self.save()
+                }
             )
         }
     }
     
     private var errorView: some View {
-        VStack {
+        LazyVStack {
             ErrorView(title: String(localized: "GenericErrorTitle"), message: viewModel.errorMessage ?? "")
         }
+    }
+    
+    private func save() {
+        viewModel.save()
     }
 }
 
