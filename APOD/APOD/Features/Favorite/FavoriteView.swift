@@ -10,7 +10,10 @@ import SwiftUI
 struct FavoriteView: View {
     @StateObject private var viewModel = FavoriteViewModel()
     @State private var isImageTapped = false
-    
+    @State private var askAboutDelete = false
+    @State private var showAlertError = false
+    @State private var apodToDelete: Apod?
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -37,21 +40,33 @@ struct FavoriteView: View {
                                 }
 
                             }
-                        }.padding()
+                        }
+                        .padding()
+                        .nasaAlert(
+                            isPresented: $askAboutDelete,
+                            title: "Aviso",
+                            message: "Isso é um alerta",
+                            actions: [
+                                .ok {
+                                    self.delete(apodToDelete?.date ?? "")
+                                },
+                                .close
+                            ]
+                        )
                     }
                 }
-                
+
                 if viewModel.status.isFailure {
                     ErrorView(
                         title: String(localized: "GenericErrorTitle"),
                         message: String(localized: "GenericErrorMessage")
                     )
                 }
-                
+
                 if viewModel.status.isLoading {
                     ImageLoaderView().cornerRadius(20)
                 }
-                
+
             }
             .navigationTitle(String(localized: "Favorites"))
             .navigationBarTitleDisplayMode(.inline)
@@ -72,16 +87,42 @@ struct FavoriteView: View {
                 url: apod?.url ?? "",
                 isFavorited: true,
                 action: {
-                    // TODO: Questionar desfavoritar
-                    self.delete(apod?.date ?? "")
-                }
+                    self.apodToDelete = apod
+                    self.askAboutDelete.toggle()
+                },
+                isSheetPresented: true
             )
-        }
+        }.nasaAlert(
+            isPresented: $askAboutDelete,
+            title: String(localized: "Warning"),
+            message: String(localized: "AreYouSureUnfavorite"),
+            actions: [
+                .ok {
+                    self.delete(apodToDelete?.date ?? "")
+                },
+                .close
+            ]
+        )
+        .nasaAlert(
+            isPresented: $showAlertError,
+            title: String(localized: "GenericErrorTitle"),
+            message: String(localized: "GenericErrorMessage"),
+            actions: [
+                .ok {
+                    showAlertError.toggle()
+                }
+            ]
+        )
     }
     
     private func delete(_ date: String) {
-        viewModel.delete(byDate: date)
-        viewModel.fetchAll()
+        let wasDelete = viewModel.delete(byDate: date)
+        if wasDelete {
+            viewModel.fetchAll()
+            return
+        }
+        
+        showAlertError.toggle()
     }
 }
 

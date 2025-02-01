@@ -54,25 +54,25 @@ class HomeViewModel: ObservableObject {
             let value = try repository.fetch(byDate: date)
             return value != nil
         } catch {
-            print("Erro ao salvar no Core Data: \(error)")
             return false
         }
     }
     
-    func save() {
+    func save() -> Bool {
         guard let apod = apod else {
-            // TODO: show error
-            return
+            return false
         }
         do {
-            let value = try repository.fetch(byDate: apod.date ?? "")
+            let value = try repository.fetch(byDate: apod.date)
             if value == nil {
                 try repository.save(apod)
             } else {
-                try repository.delete(byDate: apod.date ?? "")
+                try repository.delete(byDate: apod.date)
             }
+            
+            return true
         } catch {
-            print("Erro ao salvar no Core Data: \(error)")
+           return false
         }
     }
 }

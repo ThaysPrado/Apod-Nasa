@@ -11,6 +11,7 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @State private var isCalendarPresented = false
     @State private var isImageTapped = false
+    @State private var showAlertError = false
     
     var body: some View {
         NavigationStack {
@@ -28,7 +29,7 @@ struct HomeView: View {
                 }
                 .padding(.top, 20)
             }
-            .navigationTitle("APOD")
+            .navigationTitle(String(localized: "APOD"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 trailing: Button(action: {
@@ -79,19 +80,35 @@ struct HomeView: View {
                 isFavorited: viewModel.isFavoried,
                 action: {
                     self.save()
-                }
+                },
+                isSheetPresented: false
             )
-        }
+        }.nasaAlert(
+            isPresented: $showAlertError,
+            title: String(localized: "GenericErrorTitle"),
+            message: String(localized: "GenericErrorMessage"),
+            actions: [
+                .ok {
+                    showAlertError.toggle()
+                }
+            ]
+        )
     }
     
     private var errorView: some View {
         LazyVStack {
-            ErrorView(title: String(localized: "GenericErrorTitle"), message: viewModel.errorMessage ?? "")
+            ErrorView(
+                title: String(localized: "GenericErrorTitle"),
+                message: viewModel.errorMessage ?? ""
+            )
         }
     }
     
     private func save() {
-        viewModel.save()
+        let isComplete = viewModel.save()
+        if !isComplete {
+            showAlertError.toggle()
+        }
     }
 }
 

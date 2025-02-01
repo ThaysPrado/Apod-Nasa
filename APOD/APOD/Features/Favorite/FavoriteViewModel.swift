@@ -10,7 +10,6 @@ import Combine
 
 class FavoriteViewModel: ObservableObject {
     @Published var apods: [Apod]?
-    @Published var errorMessage: String?
     @Published var status: Status = .initial
     
     private var cancellables = Set<AnyCancellable>()
@@ -27,16 +26,15 @@ class FavoriteViewModel: ObservableObject {
             self.status = .success
         } catch {
             self.status = .failure
-            self.errorMessage = "\(error.localizedDescription)"
         }
     }
     
-    func delete(byDate date: String) {
+    func delete(byDate date: String) -> Bool {
         do {
             try repository.delete(byDate: date)
+            return true
         } catch {
-            // TODO: Show erro
-            print("Erro ao salvar no Core Data: \(error)")
+            return false
         }
     }
 

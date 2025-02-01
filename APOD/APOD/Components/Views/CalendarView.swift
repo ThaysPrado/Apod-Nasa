@@ -17,7 +17,7 @@ struct CalendarView: View {
     init(selectedDate: Binding<Date>, isPresented: Binding<Bool>) {
         self._selectedDate = selectedDate
         self._isPresented = isPresented
-        self.minDate = Calendar.current.date(from: DateComponents(year: 1996, month: 01, day: 01)) ?? Date()
+        self.minDate = Calendar.current.date(from: DateComponents(year: 1995, month: 06, day: 16)) ?? Date()
         self.maxDate = Date()
     }
     

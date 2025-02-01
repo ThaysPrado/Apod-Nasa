@@ -17,6 +17,7 @@ struct InformationView: View {
     let url: String
     @State var isFavorited: Bool
     var action: () -> Void
+    let isSheetPresented: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: NasaSpacing.regular.rawValue) {
@@ -32,23 +33,21 @@ struct InformationView: View {
                     Button(action: {
                         showShareSheet.toggle()
                         }) {
-                            
                             Image(systemName: "square.and.arrow.up")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(.blue)
-                            
                         }.padding(.trailing, 10)
                     Button(action: {
                             action()
-                            isFavorited.toggle()
+                            if !isSheetPresented {
+                                isFavorited.toggle()
+                            }
                         }) {
-                            
                             Image(systemName: isFavorited ?  "heart.fill" : "heart")
                                 .resizable()
                                 .frame(width: 20, height: 20)
                                 .foregroundColor(.secondary)
-                            
                         }
                     }
                 }
@@ -77,5 +76,6 @@ struct InformationView: View {
                     isFavorited: false,
                     action: {
                         print("Click")
-                    })
+                    },
+                    isSheetPresented: false)
 }

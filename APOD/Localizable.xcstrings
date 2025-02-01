@@ -17,6 +17,17 @@
         }
       }
     },
+    "AreYouSureUnfavorite" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to unfavorite?"
+          }
+        }
+      }
+    },
     "ChooseDateTitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -140,6 +151,9 @@
           }
         }
       }
+    },
+    "Warning" : {
+      "extractionState" : "manual"
     }
   },
   "version" : "1.0"
