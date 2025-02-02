@@ -22,7 +22,7 @@ struct InformationView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: NasaSpacing.regular.rawValue) {
             if let copyright = copyright {
-                Text(copyright)
+                Text(copyright.removeBreakLines())
                     .font(.helvetica(with: .light, forTextStyle: .callout))
             }
             HStack {

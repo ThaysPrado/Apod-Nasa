@@ -16,9 +16,9 @@ class HomeViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     private let service: ApodServiceProtocol
-    private let repository: ApodRepository
+    private let repository: ApodRepositoryProtocol
 
-    init(service: ApodServiceProtocol = ApodService(), repository: ApodRepository = ApodRepository()) {
+    init(service: ApodServiceProtocol = ApodService(), repository: ApodRepositoryProtocol = ApodRepository()) {
         self.service = service
         self.repository = repository
         
@@ -38,7 +38,7 @@ class HomeViewModel: ObservableObject {
                 case .success(let apod):
                     self?.apod = apod
                     self?.errorMessage = nil
-                    self?.isFavoried = self?.isFavorited(byDate: apod.date ?? "") ?? false
+                    self?.isFavoried = self?.isFavorited(byDate: apod.date) ?? false
                     self?.status = .success
                 case .failure(let error):
                     self?.apod = nil

@@ -8,7 +8,14 @@
 import CoreData
 import Foundation
 
-final class ApodRepository {
+protocol ApodRepositoryProtocol {
+    func save(_ apod: Apod) throws
+    func fetchAll() throws -> [Apod]
+    func fetch(byDate date: String) throws -> Apod?
+    func delete(byDate date: String) throws
+}
+
+final class ApodRepository: ApodRepositoryProtocol {
 
     private let context: NSManagedObjectContext
     
@@ -24,59 +31,49 @@ final class ApodRepository {
         item.mediaType = apod.mediaType.rawValue
         item.title = apod.title
         item.url = apod.url
-        item.thumbnail = ""
+        item.thumbnailUrl = apod.thumbnailUrl
 
-        saveContext()
+        try saveContext()
     }
-
+    
+    private func mapToApod(_ item: ApodItem) -> Apod {
+        return Apod(
+            copyright: item.copyright,
+            thumbnailUrl: item.thumbnailUrl,
+            date: item.date ?? "",
+            explanation: item.explanation ?? "",
+            mediaType: Apod.MediaType(rawValue: item.mediaType ?? "image") ?? .image,
+            title: item.title ?? "",
+            url: item.url ?? ""
+        )
+    }
+    
     func fetchAll() throws -> [Apod] {
         let fetchRequest: NSFetchRequest<ApodItem> = ApodItem.fetchRequest()
-        let items = try context.fetch(fetchRequest)
-
-        return items.map { item in
-            Apod(
-                copyright: item.copyright ?? "",
-                date: item.date ?? "",
-                explanation: item.explanation ?? "",
-                mediaType: Apod.MediaType(rawValue: item.mediaType ?? "") ?? .image,
-                title: item.title ?? "",
-                url: item.url ?? ""
-            )
-        }
+        return try context.fetch(fetchRequest).map { mapToApod($0) }
     }
 
     func fetch(byDate date: String) throws -> Apod? {
         let fetchRequest: NSFetchRequest<ApodItem> = ApodItem.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "date == %@", date)
-
-        if let picture = try context.fetch(fetchRequest).first {
-            return Apod(
-                copyright: picture.copyright ?? "",
-                date: picture.date ?? "",
-                explanation: picture.explanation ?? "",
-                mediaType: Apod.MediaType(rawValue: picture.mediaType ?? "") ?? .image,
-                title: picture.title ?? "",
-                url: picture.url ?? ""
-            )
-        }
-        return nil
+        return try context.fetch(fetchRequest).first.map { mapToApod($0) }
     }
-
+    
     func delete(byDate date: String) throws {
         let fetchRequest: NSFetchRequest<ApodItem> = ApodItem.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "date == %@", date)
 
-        if let picture = try context.fetch(fetchRequest).first {
-            context.delete(picture)
-            saveContext()
+        if let item = try context.fetch(fetchRequest).first {
+            context.delete(item)
+            try saveContext()
         }
     }
     
-    private func saveContext() {
+    private func saveContext() throws {
         do {
             try context.save()
         } catch {
-            print("Erro ao salvar no Core Data: \(error)")
+            throw error
         }
     }
 }

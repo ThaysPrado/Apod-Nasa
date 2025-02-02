@@ -10,12 +10,13 @@ import CachedAsyncImage
 
 struct ImageRowView: View {
     let url: String
+    let thumbnailUrl: String
     let date: String
     let title: String
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            CachedAsyncImage(url: URL(string: url)) { image in
+            CachedAsyncImage(url: URL(string: thumbnailUrl.isEmpty ? url : thumbnailUrl)) { image in
                 image.resizable().scaledToFill()
             } placeholder: {
                 ImageLoaderView()
@@ -27,7 +28,7 @@ struct ImageRowView: View {
                 Text(title)
             }
             .font(.helvetica(with: .light, forTextStyle: .callout))
-            .padding([.leading, .trailing], 8)
+            .padding([.leading, .trailing], 16)
             .foregroundColor(.white)
             .lineLimit(1)
             .truncationMode(.tail)
@@ -39,6 +40,7 @@ struct ImageRowView: View {
 #Preview {
     ImageRowView(
         url: "https://apod.nasa.gov/apod/image/2501/M33_1024.jpg",
+        thumbnailUrl: "",
         date: "2025-02-01",
         title: "Galaxy"
     ).frame(width: 200, height: 200)

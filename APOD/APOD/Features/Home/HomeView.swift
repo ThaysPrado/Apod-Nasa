@@ -68,8 +68,12 @@ struct HomeView: View {
     
     private var successView: some View {
         LazyVStack {
-            ImageView(url: viewModel.apod?.url ?? "").onTapGesture {
-                isImageTapped.toggle()
+            if viewModel.apod?.isImage() ?? true {
+                ImageView(url: viewModel.apod?.url ?? "").onTapGesture {
+                    isImageTapped.toggle()
+                }
+            } else {
+                VideoPlayerView(videoURL: viewModel.apod?.url ?? "").frame(height: 250)
             }
             InformationView(
                 title: viewModel.apod?.title ?? "",

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		46AD2B652D4DD28700A3733E /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 46AD2B642D4DD28700A3733E /* CachedAsyncImage */; };
 		46AD2B672D4DD57C00A3733E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 46AD2B662D4DD57C00A3733E /* Localizable.xcstrings */; };
+		46E3F0F92D502872005E6C57 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 46E3F0F82D502872005E6C57 /* CachedAsyncImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,14 +41,47 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Config/ServiceConfig.swift,
+				CoreData/APOD.xcdatamodeld,
+				CoreData/APODRepository.swift,
+				CoreData/PersistenceController.swift,
+				Extensions/DateExtensions.swift,
 				Features/Home/ApodModel.swift,
 				Features/Home/HomeViewModel.swift,
 				Services/APOD/ApodService.swift,
 				Services/Manager/APIManager.swift,
 				Services/Manager/NetworkConstants.swift,
 				Services/Manager/RequestError.swift,
+				States/Status.swift,
 			);
 			target = 4657E6742D4AFDC90023F442 /* APODTests */;
+		};
+		46E3F0CE2D500877005E6C57 /* Exceptions for "APOD" folder in "APODUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Components/Error/ErrorView.swift,
+				Components/Loaders/ImageLoaderView.swift,
+				Components/Views/ImageRowView.swift,
+				Components/Views/ImageView.swift,
+				Components/Views/InformationView.swift,
+				Components/Views/VideoPlayerView.swift,
+				CoreData/APOD.xcdatamodeld,
+				CoreData/APODRepository.swift,
+				CoreData/PersistenceController.swift,
+				Extensions/FontExtensions.swift,
+				Extensions/StringExtensions.swift,
+				Extensions/ViewExtensions.swift,
+				Features/Favorite/FavoriteView.swift,
+				Features/Favorite/FavoriteViewModel.swift,
+				Features/Home/ApodModel.swift,
+				Modifiers/ShimmerModifier.swift,
+				Modifiers/ViewModifier.swift,
+				States/Status.swift,
+				Utils/ActivityViewController.swift,
+				Utils/NasaAlert.swift,
+				Utils/NasaSpacing.swift,
+				Utils/NasaTextStyle.swift,
+			);
+			target = 4657E67E2D4AFDC90023F442 /* APODUITests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -56,6 +90,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				46AC707A2D4C4D5400294C1F /* Exceptions for "APOD" folder in "APODTests" target */,
+				46E3F0CE2D500877005E6C57 /* Exceptions for "APOD" folder in "APODUITests" target */,
 			);
 			path = APOD;
 			sourceTree = "<group>";
@@ -92,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46E3F0F92D502872005E6C57 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +223,7 @@
 			);
 			name = APODUITests;
 			packageProductDependencies = (
+				46E3F0F82D502872005E6C57 /* CachedAsyncImage */,
 			);
 			productName = APODUITests;
 			productReference = 4657E67F2D4AFDC90023F442 /* APODUITests.xctest */;
@@ -522,13 +559,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = thaysprado.APODTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APOD.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/APOD";
 			};
 			name = Debug;
@@ -541,13 +582,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = thaysprado.APODTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APOD.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/APOD";
 			};
 			name = Release;
@@ -559,12 +604,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = thaysprado.APODUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = APOD;
 			};
 			name = Debug;
@@ -576,12 +626,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = thaysprado.APODUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = APOD;
 			};
 			name = Release;
@@ -640,6 +695,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		46AD2B642D4DD28700A3733E /* CachedAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46AD2B632D4DD28700A3733E /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
+			productName = CachedAsyncImage;
+		};
+		46E3F0F82D502872005E6C57 /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 46AD2B632D4DD28700A3733E /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;

@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct FavoriteView: View {
-    @StateObject private var viewModel = FavoriteViewModel()
+    @StateObject private var viewModel: FavoriteViewModel
     @State private var isImageTapped = false
     @State private var askAboutDelete = false
     @State private var showAlertError = false
-    @State private var apodToDelete: Apod?
+    @State private var selectedApod: Apod?
+    
+    init(viewModel: FavoriteViewModel = FavoriteViewModel()) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
 
     var body: some View {
         NavigationStack {
@@ -22,37 +26,27 @@ struct FavoriteView: View {
                         ErrorView(
                             title: String(localized: "GenericErrorTitle"),
                             message: String(localized: "FavoriteEmptyMessage")
-                        )
+                        ).accessibilityIdentifier("emptyMessage")
                     } else {
                         LazyVStack(alignment: .leading, spacing: 16) {
                             ForEach(viewModel.apods!, id: \.self) { item in
                                 ImageRowView(
                                     url: item.url,
+                                    thumbnailUrl: item.thumbnailUrl ?? "",
                                     date: item.date,
                                     title: item.title
                                 )
                                 .cornerRadius(20)
                                 .onTapGesture {
-                                    isImageTapped.toggle()
+                                    selectedApod = item
                                 }
-                                .sheet(isPresented: $isImageTapped) {
-                                    successView(apod: item)
-                                }
-
+                                .accessibilityIdentifier("favoriteItem_\(item.title)")
                             }
                         }
                         .padding()
-                        .nasaAlert(
-                            isPresented: $askAboutDelete,
-                            title: "Aviso",
-                            message: "Isso é um alerta",
-                            actions: [
-                                .ok {
-                                    self.delete(apodToDelete?.date ?? "")
-                                },
-                                .close
-                            ]
-                        )
+                        .sheet(item: $selectedApod) { apod in
+                            detailView(apod: apod)
+                        }
                     }
                 }
 
@@ -60,11 +54,13 @@ struct FavoriteView: View {
                     ErrorView(
                         title: String(localized: "GenericErrorTitle"),
                         message: String(localized: "GenericErrorMessage")
-                    )
+                    ).accessibilityIdentifier("errorMessage")
                 }
 
                 if viewModel.status.isLoading {
-                    ImageLoaderView().cornerRadius(20)
+                    ImageLoaderView()
+                        .cornerRadius(20)
+                        .accessibilityIdentifier("loadingIndicator")
                 }
 
             }
@@ -74,45 +70,57 @@ struct FavoriteView: View {
         .onAppear {
             viewModel.fetchAll()
         }
+        .accessibilityIdentifier("favoriteView")
     }
     
-    private func successView(apod: Apod?) -> some View {
-        LazyVStack {
-            ImageView(url: apod?.url ?? "")
-            InformationView(
-                title: apod?.title ?? "",
-                explanation: apod?.explanation ?? "",
-                date: apod?.date ?? "",
-                copyright: apod?.copyright ?? "",
-                url: apod?.url ?? "",
-                isFavorited: true,
-                action: {
-                    self.apodToDelete = apod
-                    self.askAboutDelete.toggle()
-                },
-                isSheetPresented: true
-            )
-        }.nasaAlert(
-            isPresented: $askAboutDelete,
-            title: String(localized: "Warning"),
-            message: String(localized: "AreYouSureUnfavorite"),
-            actions: [
-                .ok {
-                    self.delete(apodToDelete?.date ?? "")
-                },
-                .close
-            ]
-        )
-        .nasaAlert(
-            isPresented: $showAlertError,
-            title: String(localized: "GenericErrorTitle"),
-            message: String(localized: "GenericErrorMessage"),
-            actions: [
-                .ok {
-                    showAlertError.toggle()
+    private func detailView(apod: Apod?) -> some View {
+        ScrollView {
+            LazyVStack {
+                if apod?.isImage() ?? true {
+                    ImageView(url: apod?.url ?? "").onTapGesture {
+                        isImageTapped.toggle()
+                    }
+                } else {
+                    VideoPlayerView(videoURL: apod?.url ?? "")
+                        .frame(height: 250)
+                        .padding(.top, 16)
                 }
-            ]
-        )
+                InformationView(
+                    title: apod?.title ?? "",
+                    explanation: apod?.explanation ?? "",
+                    date: apod?.date ?? "",
+                    copyright: apod?.copyright ?? "",
+                    url: apod?.url ?? "",
+                    isFavorited: true,
+                    action: {
+                        self.askAboutDelete.toggle()
+                    },
+                    isSheetPresented: true
+                )
+            }
+            .nasaAlert(
+                isPresented: $askAboutDelete,
+                title: String(localized: "Warning"),
+                message: String(localized: "AreYouSureUnfavorite"),
+                actions: [
+                    .ok {
+                        self.delete(apod?.date ?? "")
+                        self.selectedApod = nil
+                    },
+                    .close
+                ]
+            )
+            .nasaAlert(
+                isPresented: $showAlertError,
+                title: String(localized: "GenericErrorTitle"),
+                message: String(localized: "GenericErrorMessage"),
+                actions: [
+                    .ok {
+                        showAlertError.toggle()
+                    }
+                ]
+            )
+        }
     }
     
     private func delete(_ date: String) {

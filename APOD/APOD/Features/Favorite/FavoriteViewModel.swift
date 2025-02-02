@@ -13,9 +13,9 @@ class FavoriteViewModel: ObservableObject {
     @Published var status: Status = .initial
     
     private var cancellables = Set<AnyCancellable>()
-    private let repository: ApodRepository
+    private let repository: ApodRepositoryProtocol
 
-    init(repository: ApodRepository = ApodRepository()) {
+    init(repository: ApodRepositoryProtocol = ApodRepository()) {
         self.repository = repository
     }
 

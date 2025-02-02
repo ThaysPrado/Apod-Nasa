@@ -9,10 +9,18 @@ import CoreData
 
 final class PersistenceController {
     let container: NSPersistentContainer
-
+    
     init(modelName: String, inMemory: Bool = false) {
-        container = NSPersistentContainer(name: modelName)
-        container.loadPersistentStores { _, error in
+        if inMemory {
+            container = NSPersistentContainer(name: modelName)
+            let description = NSPersistentStoreDescription()
+            description.type = NSInMemoryStoreType
+            container.persistentStoreDescriptions = [description]
+        } else {
+            container = NSPersistentContainer(name: modelName)
+        }
+
+        container.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Unresolved error \(error.localizedDescription)")
             }

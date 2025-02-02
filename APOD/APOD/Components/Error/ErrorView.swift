@@ -16,10 +16,12 @@ struct ErrorView: View {
             Text(title)
                 .font(.helvetica(with: .bold, forTextStyle: .title3))
                 .foregroundColor(.gray)
+                .accessibilityIdentifier("titleText")
             Text(message)
                 .font(.helvetica(with: .regular, forTextStyle: .subheadline))
                 .foregroundColor(.gray)
                 .padding()
+                .accessibilityIdentifier("messageText")
         }.padding()
     }
 }

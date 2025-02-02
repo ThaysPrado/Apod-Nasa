@@ -14,11 +14,11 @@ struct NasaAlert {
         var buttonTitle: String {
             switch self {
             case .ok:
-                return "OK"
+                return String(localized: "Ok")
             case .retry:
-                return "TENTAR NOVAMENTE"
+                return String(localized: "TryAgain")
             case .close:
-                return "FECHAR"
+                return String(localized: "Close")
             }
         }
 

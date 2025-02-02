@@ -19,7 +19,7 @@ struct ApodService: ApodServiceProtocol {
     }
     
     func getAPOD(_ date: Date? = nil, _ completion: @escaping (Result<Apod, RequestError>) -> Void) {
-        var queryParams = ["api_key": ServiceConfig.getApiKey()]
+        var queryParams = ["api_key": ServiceConfig.getApiKey(), "thumbs": "true"]
         
         if let date = date {
             queryParams["date"] = date.toString()

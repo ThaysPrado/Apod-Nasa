@@ -9,7 +9,8 @@ import Foundation
 
 struct Apod: Decodable, Equatable, Identifiable, Hashable {
     let id = UUID()
-    let copyright: String
+    let copyright: String?
+    let thumbnailUrl: String?
     let date: String
     let explanation: String
     let mediaType: MediaType
@@ -17,17 +18,22 @@ struct Apod: Decodable, Equatable, Identifiable, Hashable {
     let url: String
 
     enum MediaType: String, Decodable {
-        case image
-        case video
+        case image = "image"
+        case video = "video"
     }
 
     enum CodingKeys: String, CodingKey {
         case copyright
+        case thumbnailUrl = "thumbnail_url"
         case date
         case explanation
         case mediaType = "media_type"
         case title
         case url
+    }
+    
+    func isImage() -> Bool {
+        self.mediaType == .image
     }
     
     func hash(into hasher: inout Hasher) {
