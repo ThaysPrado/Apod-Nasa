@@ -12,6 +12,10 @@ final class MockApodRepository: ApodRepositoryProtocol {
     var didSave = false
     var didDelete = false
     
+    init(_ shouldFetchReturnNil: Bool = true) {
+        self.shouldFetchReturnNil = shouldFetchReturnNil
+    }
+    
     func fetchAll() throws -> [Apod] {
         return [Apod(
             copyright: nil,

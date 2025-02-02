@@ -45,6 +45,7 @@
 				CoreData/APODRepository.swift,
 				CoreData/PersistenceController.swift,
 				Extensions/DateExtensions.swift,
+				Features/Favorite/FavoriteViewModel.swift,
 				Features/Home/ApodModel.swift,
 				Features/Home/HomeViewModel.swift,
 				Services/APOD/ApodService.swift,

@@ -8,7 +8,7 @@
 import XCTest
 import Combine
 
-class HomeViewModelTests: XCTestCase {
+class HomeViewModelSuccessTests: XCTestCase {
     var viewModel: HomeViewModel!
     var mockService: MockApodService!
     var mockRepository: MockApodRepository!
