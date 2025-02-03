@@ -50,12 +50,14 @@ final class ApodRepository: ApodRepositoryProtocol {
     
     func fetchAll() throws -> [Apod] {
         let fetchRequest: NSFetchRequest<ApodItem> = ApodItem.fetchRequest()
+        resetContext()
         return try context.fetch(fetchRequest).map { mapToApod($0) }
     }
 
     func fetch(byDate date: String) throws -> Apod? {
         let fetchRequest: NSFetchRequest<ApodItem> = ApodItem.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "date == %@", date)
+        resetContext()
         return try context.fetch(fetchRequest).first.map { mapToApod($0) }
     }
     
@@ -67,6 +69,8 @@ final class ApodRepository: ApodRepositoryProtocol {
             context.delete(item)
             try saveContext()
         }
+        
+        resetContext()
     }
     
     private func saveContext() throws {
@@ -75,5 +79,9 @@ final class ApodRepository: ApodRepositoryProtocol {
         } catch {
             throw error
         }
+    }
+    
+    private func resetContext() {
+        context.reset()
     }
 }

@@ -23,8 +23,8 @@ class HomeViewModel: ObservableObject {
         self.repository = repository
         
         $selectedDate
-            .sink { date in
-                self.getAPOD(date)
+            .sink { [weak self] date in
+                self?.getAPOD(date)
             }
             .store(in: &cancellables)
     }
