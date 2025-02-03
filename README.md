@@ -10,6 +10,12 @@ https://api.nasa.gov/planetary/apod
 - Instale as dependências
 - Rode o projeto
 
+## Dependências
+- Swiftlint
+- swiftui-cached-async-image
+- ViewInspector
+- swift-snapshot-testing
+
 ## Sobre o projeto
 ### Arquitetura
 Arquitetura Model-View-ViewModel (MVVM) para organizar e estruturar o código de forma clara e eficiente, desacoplando a interface do usuário (UI) da lógica de negócios e de apresentação.
