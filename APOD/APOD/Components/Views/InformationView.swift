@@ -24,10 +24,12 @@ struct InformationView: View {
             if let copyright = copyright {
                 Text(copyright.removeBreakLines())
                     .font(.helvetica(with: .light, forTextStyle: .callout))
+                    .id("CopyrightText")
             }
             HStack {
                 Text(date)
                     .font(.helvetica(with: .light, forTextStyle: .callout))
+                    .id("DateText")
                 Spacer()
                 HStack {
                     Button(action: {
@@ -35,9 +37,12 @@ struct InformationView: View {
                         }) {
                             Image(systemName: "square.and.arrow.up")
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .frame(
+                                    width: NasaSize.ref50.rawValue,
+                                    height: NasaSize.ref50.rawValue
+                                )
                                 .foregroundColor(.blue)
-                        }.padding(.trailing, 10)
+                        }.padding(.trailing, NasaSpacing.regular.rawValue)
                     Button(action: {
                             action()
                             if !isSheetPresented {
@@ -46,18 +51,24 @@ struct InformationView: View {
                         }) {
                             Image(systemName: isFavorited ?  "heart.fill" : "heart")
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .frame(
+                                    width: NasaSize.ref50.rawValue,
+                                    height: NasaSize.ref50.rawValue
+                                )
                                 .foregroundColor(.secondary)
-                        }
+                                .id("IconLikeButton")
+                        }.id("LikeButton")
                     }
                 }
             
             Text(title)
                 .font(.helvetica(with: .bold, forTextStyle: .title3))
+                .id("TitleText")
 
             Text(explanation)
                 .font(.helvetica(with: .regular, forTextStyle: .body))
                 .multilineTextAlignment(.leading)
+                .id("ExplanationText")
         }
         .padding()
         .foregroundColor(.gray)

@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		468EE2EB2D511E9100A568F8 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 468EE2EA2D511E9100A568F8 /* ViewInspector */; };
 		46AD2B652D4DD28700A3733E /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 46AD2B642D4DD28700A3733E /* CachedAsyncImage */; };
 		46AD2B672D4DD57C00A3733E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 46AD2B662D4DD57C00A3733E /* Localizable.xcstrings */; };
-		46ADEF2B2D50490B00504530 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 46ADEF2A2D50490B00504530 /* InlineSnapshotTesting */; };
-		46ADEF2D2D50490B00504530 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 46ADEF2C2D50490B00504530 /* SnapshotTesting */; };
-		46ADEF2F2D50490B00504530 /* SnapshotTestingCustomDump in Frameworks */ = {isa = PBXBuildFile; productRef = 46ADEF2E2D50490B00504530 /* SnapshotTestingCustomDump */; };
 		46ADF08B2D5067F000504530 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 46ADF08A2D5067E800504530 /* .swiftlint.yml */; };
+		46ADF0962D5072E100504530 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 46ADF0952D5072E100504530 /* InlineSnapshotTesting */; };
+		46ADF0982D5072E100504530 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 46ADF0972D5072E100504530 /* SnapshotTesting */; };
 		46E3F0F92D502872005E6C57 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 46E3F0F82D502872005E6C57 /* CachedAsyncImage */; };
 /* End PBXBuildFile section */
 
@@ -61,31 +61,51 @@
 			);
 			target = 4657E6742D4AFDC90023F442 /* APODTests */;
 		};
+		46ADF0E12D50925F00504530 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Mocks/MockApodRepository.swift,
+				Mocks/MockApodService.swift,
+			);
+			target = 4657E67E2D4AFDC90023F442 /* APODUITests */;
+		};
 		46E3F0CE2D500877005E6C57 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Components/Error/ErrorView.swift,
 				Components/Loaders/ImageLoaderView.swift,
+				Components/Loaders/InformationLoaderView.swift,
+				Components/Views/CalendarView.swift,
 				Components/Views/FullImageView.swift,
 				Components/Views/ImageRowView.swift,
 				Components/Views/ImageView.swift,
 				Components/Views/InformationView.swift,
 				Components/Views/VideoPlayerView.swift,
+				Config/ServiceConfig.swift,
 				CoreData/APOD.xcdatamodeld,
 				CoreData/APODRepository.swift,
 				CoreData/PersistenceController.swift,
+				Extensions/ColorExtensions.swift,
+				Extensions/DateExtensions.swift,
 				Extensions/FontExtensions.swift,
 				Extensions/StringExtensions.swift,
 				Extensions/ViewExtensions.swift,
 				Features/Favorite/FavoriteView.swift,
 				Features/Favorite/FavoriteViewModel.swift,
 				Features/Home/ApodModel.swift,
+				Features/Home/HomeView.swift,
+				Features/Home/HomeViewModel.swift,
 				Modifiers/ShimmerModifier.swift,
 				Modifiers/ViewModifier.swift,
+				Modifiers/ZoomModifier.swift,
+				Services/APOD/ApodService.swift,
+				Services/Manager/APIManager.swift,
+				Services/Manager/NetworkConstants.swift,
+				Services/Manager/RequestError.swift,
 				States/Status.swift,
 				Utils/ActivityViewController.swift,
 				Utils/NasaAlert.swift,
-				Utils/NasaSpacing.swift,
+				Utils/NasaSizes.swift,
 				Utils/NasaTextStyle.swift,
 			);
 			target = 4657E67E2D4AFDC90023F442 /* APODUITests */;
@@ -94,7 +114,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4657E6622D4AFDC80023F442 /* APOD */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (46AC707A2D4C4D5400294C1F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 46E3F0CE2D500877005E6C57 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = APOD; sourceTree = "<group>"; };
-		4657E6782D4AFDC90023F442 /* APODTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = APODTests; sourceTree = "<group>"; };
+		4657E6782D4AFDC90023F442 /* APODTests */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (46ADF0E12D50925F00504530 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = APODTests; sourceTree = "<group>"; };
 		4657E6822D4AFDC90023F442 /* APODUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = APODUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -118,10 +138,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46ADEF2F2D50490B00504530 /* SnapshotTestingCustomDump in Frameworks */,
-				46ADEF2D2D50490B00504530 /* SnapshotTesting in Frameworks */,
-				46ADEF2B2D50490B00504530 /* InlineSnapshotTesting in Frameworks */,
+				46ADF0982D5072E100504530 /* SnapshotTesting in Frameworks */,
+				46ADF0962D5072E100504530 /* InlineSnapshotTesting in Frameworks */,
 				46E3F0F92D502872005E6C57 /* CachedAsyncImage in Frameworks */,
+				468EE2EB2D511E9100A568F8 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +156,7 @@
 				4657E6622D4AFDC80023F442 /* APOD */,
 				4657E6782D4AFDC90023F442 /* APODTests */,
 				4657E6822D4AFDC90023F442 /* APODUITests */,
+				46ADF08C2D5071E500504530 /* Frameworks */,
 				4657E6612D4AFDC80023F442 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -148,6 +169,13 @@
 				4657E67F2D4AFDC90023F442 /* APODUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		46ADF08C2D5071E500504530 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +247,9 @@
 			name = APODUITests;
 			packageProductDependencies = (
 				46E3F0F82D502872005E6C57 /* CachedAsyncImage */,
-				46ADEF2A2D50490B00504530 /* InlineSnapshotTesting */,
-				46ADEF2C2D50490B00504530 /* SnapshotTesting */,
-				46ADEF2E2D50490B00504530 /* SnapshotTestingCustomDump */,
+				46ADF0952D5072E100504530 /* InlineSnapshotTesting */,
+				46ADF0972D5072E100504530 /* SnapshotTesting */,
+				468EE2EA2D511E9100A568F8 /* ViewInspector */,
 			);
 			productName = APODUITests;
 			productReference = 4657E67F2D4AFDC90023F442 /* APODUITests.xctest */;
@@ -262,8 +290,9 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				46AD2B632D4DD28700A3733E /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
-				46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
-				46ADEF332D50601B00504530 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				46ADF0932D5072B000504530 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				46ADF0942D5072E100504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				468EE2E92D511E9100A568F8 /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
 			productRefGroup = 4657E6612D4AFDC80023F442 /* Products */;
 			projectDirPath = "";
@@ -686,6 +715,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		468EE2E92D511E9100A568F8 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.10.1;
+			};
+		};
 		46AD2B632D4DD28700A3733E /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
@@ -694,15 +731,7 @@
 				version = 2.1.1;
 			};
 		};
-		46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
-			requirement = {
-				kind = exactVersion;
-				version = 1.18.0;
-			};
-		};
-		46ADEF332D50601B00504530 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+		46ADF0932D5072B000504530 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
 			requirement = {
@@ -710,28 +739,36 @@
 				version = 0.58.2;
 			};
 		};
+		46ADF0942D5072E100504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = exactVersion;
+				version = 1.17.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		468EE2EA2D511E9100A568F8 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 468EE2E92D511E9100A568F8 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
 		46AD2B642D4DD28700A3733E /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 46AD2B632D4DD28700A3733E /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
 		};
-		46ADEF2A2D50490B00504530 /* InlineSnapshotTesting */ = {
+		46ADF0952D5072E100504530 /* InlineSnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			package = 46ADF0942D5072E100504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = InlineSnapshotTesting;
 		};
-		46ADEF2C2D50490B00504530 /* SnapshotTesting */ = {
+		46ADF0972D5072E100504530 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			package = 46ADF0942D5072E100504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
-		};
-		46ADEF2E2D50490B00504530 /* SnapshotTestingCustomDump */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTestingCustomDump;
 		};
 		46E3F0F82D502872005E6C57 /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -26,9 +26,12 @@ struct FavoriteView: View {
                         ErrorView(
                             title: String(localized: "GenericErrorTitle"),
                             message: String(localized: "FavoriteEmptyMessage")
-                        ).accessibilityIdentifier("emptyMessage")
+                        )
                     } else {
-                        LazyVStack(alignment: .leading, spacing: 16) {
+                        LazyVStack(
+                            alignment: .leading,
+                            spacing: NasaSpacing.regular.rawValue
+                        ) {
                             ForEach(viewModel.apods ?? [], id: \.self) { item in
                                 ImageRowView(
                                     url: item.url,
@@ -36,11 +39,10 @@ struct FavoriteView: View {
                                     date: item.date,
                                     title: item.title
                                 )
-                                .cornerRadius(20)
+                                .cornerRadius(NasaRadius.ref50.rawValue)
                                 .onTapGesture {
                                     selectedApod = item
                                 }
-                                .accessibilityIdentifier("favoriteItem_\(item.title)")
                             }
                         }
                         .padding()
@@ -54,13 +56,12 @@ struct FavoriteView: View {
                     ErrorView(
                         title: String(localized: "GenericErrorTitle"),
                         message: String(localized: "GenericErrorMessage")
-                    ).accessibilityIdentifier("errorMessage")
+                    )
                 }
 
                 if viewModel.status.isLoading {
                     ImageLoaderView()
-                        .cornerRadius(20)
-                        .accessibilityIdentifier("loadingIndicator")
+                        .cornerRadius(NasaRadius.ref50.rawValue)
                 }
 
             }
@@ -70,7 +71,6 @@ struct FavoriteView: View {
         .onAppear {
             viewModel.fetchAll()
         }
-        .accessibilityIdentifier("favoriteView")
     }
     
     private func detailView(apod: Apod?) -> some View {
@@ -82,8 +82,8 @@ struct FavoriteView: View {
                     }
                 } else {
                     VideoPlayerView(videoURL: apod?.url ?? "")
-                        .frame(height: 250)
-                        .padding(.top, 16)
+                        .frame(height: NasaSize.ref500.rawValue + NasaSize.ref120.rawValue)
+                        .padding(.top, NasaSpacing.regular.rawValue)
                 }
                 InformationView(
                     title: apod?.title ?? "",

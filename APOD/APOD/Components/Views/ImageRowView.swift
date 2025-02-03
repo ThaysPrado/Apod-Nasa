@@ -17,7 +17,10 @@ struct ImageRowView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             CachedAsyncImage(url: URL(string: thumbnailUrl.isEmpty ? url : thumbnailUrl)) { image in
-                image.resizable().scaledToFill()
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .id("ImageRowView")
             } placeholder: {
                 ImageLoaderView()
             }
@@ -25,10 +28,10 @@ struct ImageRowView: View {
             HStack {
                 Text(date)
                 Text("-")
-                Text(title)
+                Text(title).id("ImageRowTitleText")
             }
             .font(.helvetica(with: .light, forTextStyle: .callout))
-            .padding([.leading, .trailing], 16)
+            .padding([.leading, .trailing], NasaSpacing.regular.rawValue)
             .foregroundColor(.white)
             .lineLimit(1)
             .truncationMode(.tail)

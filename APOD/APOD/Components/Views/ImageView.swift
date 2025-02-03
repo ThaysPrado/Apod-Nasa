@@ -13,7 +13,10 @@ struct ImageView: View {
 
     var body: some View {
         CachedAsyncImage(url: URL(string: url)) { image in
-            image.resizable().scaledToFill()
+            image
+                .resizable()
+                .scaledToFill()
+                .id("ImageView")
         } placeholder: {
             ImageLoaderView()
         }

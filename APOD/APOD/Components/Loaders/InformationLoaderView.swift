@@ -21,7 +21,7 @@ struct InformationLoaderView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(height: 24)
+                .frame(height: NasaSize.ref60.rawValue)
                 .shimmering()
             Rectangle()
                 .fill(
@@ -31,7 +31,7 @@ struct InformationLoaderView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(height: 16)
+                .frame(height: NasaSize.ref40.rawValue)
                 .shimmering()
             Rectangle()
                 .fill(
@@ -41,7 +41,7 @@ struct InformationLoaderView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(height: 200)
+                .frame(height: NasaSize.ref200.rawValue)
                 .shimmering()
         }
         .padding()

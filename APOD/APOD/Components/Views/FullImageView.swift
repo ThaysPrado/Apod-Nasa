@@ -27,6 +27,7 @@ struct FullImageView: View {
                         minZoomScale: 1,
                         doubleTapZoomScale: 2
                     )
+                    .id("FullImageView")
             case .failure:
                 ErrorView(
                     title: String(localized: "GenericErrorMessage"),

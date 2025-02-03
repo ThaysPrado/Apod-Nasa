@@ -27,7 +27,7 @@ struct HomeView: View {
                         errorView
                     }
                 }
-                .padding(.top, 20)
+                .padding(.top, NasaSpacing.regular.rawValue)
             }
             .navigationTitle(String(localized: "APOD"))
             .navigationBarTitleDisplayMode(.inline)
@@ -73,7 +73,10 @@ struct HomeView: View {
                     isImageTapped.toggle()
                 }
             } else {
-                VideoPlayerView(videoURL: viewModel.apod?.url ?? "").frame(height: 250)
+                VideoPlayerView(videoURL: viewModel.apod?.url ?? "")
+                    .frame(
+                        height: NasaSize.ref500.rawValue + NasaSize.ref120.rawValue
+                    )
             }
             InformationView(
                 title: viewModel.apod?.title ?? "",

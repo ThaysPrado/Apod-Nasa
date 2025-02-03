@@ -22,7 +22,6 @@ struct ImageLoaderView: View {
             )
             .frame(height: 200)
             .shimmering()
-            .accessibilityIdentifier("ImageLoaderView")
     }
 }
 
