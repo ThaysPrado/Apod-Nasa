@@ -13,9 +13,10 @@ struct VideoPlayerView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIViewController {
         let webView = WKWebView(frame: .zero)
-        let url = URL(string: videoURL)!
-        let request = URLRequest(url: url)
-        webView.load(request)
+        if let url = URL(string: videoURL) {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
         
         let viewController = UIViewController()
         viewController.view = webView

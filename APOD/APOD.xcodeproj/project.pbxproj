@@ -3,12 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		46AD2B652D4DD28700A3733E /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 46AD2B642D4DD28700A3733E /* CachedAsyncImage */; };
 		46AD2B672D4DD57C00A3733E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 46AD2B662D4DD57C00A3733E /* Localizable.xcstrings */; };
+		46ADEF2B2D50490B00504530 /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 46ADEF2A2D50490B00504530 /* InlineSnapshotTesting */; };
+		46ADEF2D2D50490B00504530 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 46ADEF2C2D50490B00504530 /* SnapshotTesting */; };
+		46ADEF2F2D50490B00504530 /* SnapshotTestingCustomDump in Frameworks */ = {isa = PBXBuildFile; productRef = 46ADEF2E2D50490B00504530 /* SnapshotTestingCustomDump */; };
+		46ADF08B2D5067F000504530 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 46ADF08A2D5067E800504530 /* .swiftlint.yml */; };
 		46E3F0F92D502872005E6C57 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = 46E3F0F82D502872005E6C57 /* CachedAsyncImage */; };
 /* End PBXBuildFile section */
 
@@ -34,10 +38,11 @@
 		4657E6752D4AFDC90023F442 /* APODTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APODTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4657E67F2D4AFDC90023F442 /* APODUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APODUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		46AD2B662D4DD57C00A3733E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		46ADF08A2D5067E800504530 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		46AC707A2D4C4D5400294C1F /* Exceptions for "APOD" folder in "APODTests" target */ = {
+		46AC707A2D4C4D5400294C1F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Config/ServiceConfig.swift,
@@ -56,11 +61,12 @@
 			);
 			target = 4657E6742D4AFDC90023F442 /* APODTests */;
 		};
-		46E3F0CE2D500877005E6C57 /* Exceptions for "APOD" folder in "APODUITests" target */ = {
+		46E3F0CE2D500877005E6C57 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Components/Error/ErrorView.swift,
 				Components/Loaders/ImageLoaderView.swift,
+				Components/Views/FullImageView.swift,
 				Components/Views/ImageRowView.swift,
 				Components/Views/ImageView.swift,
 				Components/Views/InformationView.swift,
@@ -87,25 +93,9 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		4657E6622D4AFDC80023F442 /* APOD */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				46AC707A2D4C4D5400294C1F /* Exceptions for "APOD" folder in "APODTests" target */,
-				46E3F0CE2D500877005E6C57 /* Exceptions for "APOD" folder in "APODUITests" target */,
-			);
-			path = APOD;
-			sourceTree = "<group>";
-		};
-		4657E6782D4AFDC90023F442 /* APODTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = APODTests;
-			sourceTree = "<group>";
-		};
-		4657E6822D4AFDC90023F442 /* APODUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = APODUITests;
-			sourceTree = "<group>";
-		};
+		4657E6622D4AFDC80023F442 /* APOD */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (46AC707A2D4C4D5400294C1F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 46E3F0CE2D500877005E6C57 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = APOD; sourceTree = "<group>"; };
+		4657E6782D4AFDC90023F442 /* APODTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = APODTests; sourceTree = "<group>"; };
+		4657E6822D4AFDC90023F442 /* APODUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = APODUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +118,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46ADEF2F2D50490B00504530 /* SnapshotTestingCustomDump in Frameworks */,
+				46ADEF2D2D50490B00504530 /* SnapshotTesting in Frameworks */,
+				46ADEF2B2D50490B00504530 /* InlineSnapshotTesting in Frameworks */,
 				46E3F0F92D502872005E6C57 /* CachedAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +131,7 @@
 		4657E6572D4AFDC80023F442 = {
 			isa = PBXGroup;
 			children = (
+				46ADF08A2D5067E800504530 /* .swiftlint.yml */,
 				46AD2B662D4DD57C00A3733E /* Localizable.xcstrings */,
 				4657E6622D4AFDC80023F442 /* APOD */,
 				4657E6782D4AFDC90023F442 /* APODTests */,
@@ -225,6 +219,9 @@
 			name = APODUITests;
 			packageProductDependencies = (
 				46E3F0F82D502872005E6C57 /* CachedAsyncImage */,
+				46ADEF2A2D50490B00504530 /* InlineSnapshotTesting */,
+				46ADEF2C2D50490B00504530 /* SnapshotTesting */,
+				46ADEF2E2D50490B00504530 /* SnapshotTestingCustomDump */,
 			);
 			productName = APODUITests;
 			productReference = 4657E67F2D4AFDC90023F442 /* APODUITests.xctest */;
@@ -254,6 +251,7 @@
 				};
 			};
 			buildConfigurationList = 4657E65B2D4AFDC80023F442 /* Build configuration list for PBXProject "APOD" */;
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -264,8 +262,9 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				46AD2B632D4DD28700A3733E /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
+				46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				46ADEF332D50601B00504530 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 4657E6612D4AFDC80023F442 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -282,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46ADF08B2D5067F000504530 /* .swiftlint.yml in Resources */,
 				46AD2B672D4DD57C00A3733E /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,6 +492,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"APOD/Preview Content\"";
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -527,6 +528,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"APOD/Preview Content\"";
 				DEVELOPMENT_TEAM = 49MZVVXQU6;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -692,6 +694,22 @@
 				version = 2.1.1;
 			};
 		};
+		46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = exactVersion;
+				version = 1.18.0;
+			};
+		};
+		46ADEF332D50601B00504530 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = exactVersion;
+				version = 0.58.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -699,6 +717,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 46AD2B632D4DD28700A3733E /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
+		};
+		46ADEF2A2D50490B00504530 /* InlineSnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = InlineSnapshotTesting;
+		};
+		46ADEF2C2D50490B00504530 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+		46ADEF2E2D50490B00504530 /* SnapshotTestingCustomDump */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46ADEF292D50490B00504530 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTestingCustomDump;
 		};
 		46E3F0F82D502872005E6C57 /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;

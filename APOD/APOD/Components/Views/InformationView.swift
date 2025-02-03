@@ -74,8 +74,6 @@ struct InformationView: View {
                     copyright: "Nasa Lorem ipsum",
                     url: "http://",
                     isFavorited: false,
-                    action: {
-                        print("Click")
-                    },
+                    action: {},
                     isSheetPresented: false)
 }

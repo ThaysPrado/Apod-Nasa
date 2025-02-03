@@ -18,8 +18,8 @@ struct Apod: Decodable, Equatable, Identifiable, Hashable {
     let url: String
 
     enum MediaType: String, Decodable {
-        case image = "image"
-        case video = "video"
+        case image
+        case video
     }
 
     enum CodingKeys: String, CodingKey {
@@ -43,7 +43,7 @@ struct Apod: Decodable, Equatable, Identifiable, Hashable {
         hasher.combine(date)
     }
     
-    static func ==(lhs: Apod, rhs: Apod) -> Bool {
+    static func == (lhs: Apod, rhs: Apod) -> Bool {
         return lhs.id == rhs.id
     }
 }

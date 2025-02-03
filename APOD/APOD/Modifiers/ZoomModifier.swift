@@ -156,7 +156,7 @@ public extension View {
         doubleTapZoomScale: CGFloat = 3,
         outOfBoundsColor: Color = .clear
     ) -> some View {
-        GeometryReader { proxy in
+        GeometryReader { _ in
             ZStack {
                 outOfBoundsColor
                 self.zoomable(

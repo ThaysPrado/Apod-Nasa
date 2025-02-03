@@ -48,3 +48,6 @@ struct FullImageView: View {
         )
     }
 }
+#Preview {
+    FullImageView(imageURL: "https://apod.nasa.gov/apod/image/2501/M33_1024.jpg")
+}

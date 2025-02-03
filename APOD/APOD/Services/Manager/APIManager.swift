@@ -53,12 +53,10 @@ struct APIManager: APIRequestable {
         var request = URLRequest(url: finalURL)
         request.httpMethod = method.rawValue
         
-
         headers?.forEach { field, value in
             request.setValue(value, forHTTPHeaderField: field)
         }
         
-
         if let body = body {
             do {
                 let jsonData = try JSONEncoder().encode(body)
@@ -70,7 +68,7 @@ struct APIManager: APIRequestable {
             }
         }
         
-        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, _ in
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(.unknownStatusCode(-1)))
                 return

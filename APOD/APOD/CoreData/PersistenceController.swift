@@ -20,7 +20,7 @@ final class PersistenceController {
             container = NSPersistentContainer(name: modelName)
         }
 
-        container.loadPersistentStores { description, error in
+        container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Unresolved error \(error.localizedDescription)")
             }

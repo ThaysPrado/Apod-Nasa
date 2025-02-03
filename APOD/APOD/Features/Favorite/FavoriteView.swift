@@ -29,7 +29,7 @@ struct FavoriteView: View {
                         ).accessibilityIdentifier("emptyMessage")
                     } else {
                         LazyVStack(alignment: .leading, spacing: 16) {
-                            ForEach(viewModel.apods!, id: \.self) { item in
+                            ForEach(viewModel.apods ?? [], id: \.self) { item in
                                 ImageRowView(
                                     url: item.url,
                                     thumbnailUrl: item.thumbnailUrl ?? "",
